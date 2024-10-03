@@ -3,6 +3,7 @@
 # hardhat
 cache
 artifacts
+.env
 
 # dependencies
 /node_modules

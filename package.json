@@ -16,6 +16,7 @@
     "compile": "npx hardhat compile"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "hardhat": "^2.22.11",
     "next": "14.2.13",
     "react": "^18",

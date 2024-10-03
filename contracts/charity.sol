@@ -32,6 +32,9 @@ contract CharityContract {
     address contractOwner;
     Charity[] charitiesArray;
 
+    // MAPPINGS
+    mapping(address => uint) supporterDonation;
+
     // EVENTS
     event CharityListed(uint16 indexed id);
 
@@ -102,6 +105,7 @@ contract CharityContract {
      * @param id id of the charity
      */
     function donate(uint16 id) public payable charityExists(id) {
+        supporterDonation[msg.sender] += msg.value;
         charitiesArray[id].collectedAmountInEther += msg.value;
     }
 
