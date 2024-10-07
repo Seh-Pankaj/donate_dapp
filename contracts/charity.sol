@@ -37,6 +37,8 @@ contract CharityContract {
 
     // EVENTS
     event CharityListed(uint16 indexed id);
+    event CharityDeleted(uint16 indexed id);
+    event DonationSuccessfull(uint amount);
 
     // MODIFIERS
     modifier deletePreRequisites(uint16 index, address sender) {
@@ -98,6 +100,7 @@ contract CharityContract {
         uint16 id
     ) public deletePreRequisites(id, msg.sender) {
         delete charitiesArray[id];
+        emit CharityDeleted(id);
     }
 
     /**
@@ -107,21 +110,26 @@ contract CharityContract {
     function donate(uint16 id) public payable charityExists(id) {
         supporterDonation[msg.sender] += msg.value;
         charitiesArray[id].collectedAmountInEther += msg.value;
+        emit DonationSuccessfull(msg.value);
     }
 
     // GETTER FUNCTIONS
+
+    function getCounter() public view returns (uint16) {
+        return counter;
+    }
+
+    function getContractOwner() public view returns (address) {
+        return contractOwner;
+    }
+
     function getCharity(
         uint16 id
     ) public view charityExists(id) returns (Charity memory) {
         return charitiesArray[id];
     }
 
-    function getCharities()
-        public
-        view
-        charityExists(counter)
-        returns (Charity[] memory)
-    {
+    function getCharities() public view returns (Charity[] memory) {
         return charitiesArray;
     }
 }

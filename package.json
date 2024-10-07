@@ -13,9 +13,12 @@
     "start": "next start",
     "lint": "next lint",
     "node": "npx hardhat node",
-    "compile": "npx hardhat compile"
+    "compile": "npx hardhat compile",
+    "test": "npx hardhat test",
+    "onetest": "npx hardhat test --grep"
   },
   "dependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
     "dotenv": "^16.4.5",
     "hardhat": "^2.22.11",
     "next": "14.2.13",
@@ -23,11 +26,11 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",
     "@openzeppelin/contracts": "^5.0.2",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "chai": "^5.1.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.13",
     "postcss": "^8",
